@@ -40,14 +40,14 @@ impl ImageBitmap {
 
 impl ImageBitmapMethods for ImageBitmap {
     // https://html.spec.whatwg.org/multipage/#dom-imagebitmap-height
-    fn Height(&self) -> u32 {
+    fn height(&self) -> u32 {
         //to do: add a condition for checking detached internal slot
         //and return 0 if set to true
         self.height
     }
 
     // https://html.spec.whatwg.org/multipage/#dom-imagebitmap-width
-    fn Width(&self) -> u32 {
+    fn width(&self) -> u32 {
         //to do: add a condition to check detached internal slot
         ////and return 0 if set to true
         self.width
