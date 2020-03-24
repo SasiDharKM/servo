@@ -32,6 +32,7 @@ impl ImageBitmap {
             width: width_arg,
             height: height_arg,
             bitmap_data: DomRefCell::new(vec![]),
+			orgin_clean: true,
         }
     }
 
