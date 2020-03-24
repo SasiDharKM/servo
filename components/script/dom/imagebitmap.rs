@@ -3,15 +3,12 @@
  * file, You can obtain one at https://mozilla.org/MPL/2.0/. */
 
 use crate::dom::bindings::cell::DomRefCell;
-
 use crate::dom::bindings::codegen::Bindings::ImageBitmapBinding::ImageBitmapMethods;
 use crate::dom::bindings::root::DomRoot;
 use crate::dom::globalscope::GlobalScope;
-
 use crate::dom::bindings::error::Fallible;
 use crate::dom::bindings::reflector::{reflect_dom_object, Reflector};
 use dom_struct::dom_struct;
-
 use std::vec::Vec;
 
 #[dom_struct]
@@ -55,4 +52,10 @@ impl ImageBitmapMethods for ImageBitmap {
         ////and return 0 if set to true
         self.width
     }
+
+	//https://html.spec.whatwg.org/multipage/imagebitmap-and-animations.html#dom-imagebitmap-close
+	fn close(&self) {
+		//to do: set detached internal slot to true
+		drop(self.bitmap_data);
+	}
 }
