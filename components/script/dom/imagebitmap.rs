@@ -10,6 +10,11 @@ use crate::dom::bindings::error::Fallible;
 use crate::dom::bindings::reflector::{reflect_dom_object, Reflector};
 use dom_struct::dom_struct;
 use std::vec::Vec;
+use crate::dom::promise::Promise;
+use crate::dom::bindings::codegen::Bindings::ImageBitmapBinding::ImageBitmapOptions;
+//use crate::dom::domexception::{DOMErrorName, DOMException};
+
+type ImageBitmapSource = CanvasImageSourceorImageDataorBlob;
 
 #[dom_struct]
 pub struct ImageBitmap {
@@ -17,6 +22,7 @@ pub struct ImageBitmap {
     width: u32,
     height: u32,
     bitmap_data: DomRefCell<Vec<u8>>,
+	orgin_clean: bool,
 }
 
 impl ImageBitmap {
@@ -58,4 +64,32 @@ impl ImageBitmapMethods for ImageBitmap {
 		//to do: set detached internal slot to true
 		drop(self.bitmap_data);
 	}
+
+	fn createImageBitmap_canvas() -> () {
+		//to do:step 1
+		//crop to the source rectangle with formatting
+		//step 2
+		self.origin_flag = image.origin_flag;
+		//step 3
+
+	}
+
+	//https://html.spec.whatwg.org/multipage/imagebitmap-and-animations.html#dom-createimagebitmap
+	fn createImageBitmap(&self, image: ImageBitmapSource,options: &ImageBitmapOptions) {
+		//step 1
+		let promise = Promise::new(&GlobalScope);
+		//step 3 - to do: need to implement a check for if they exist or not
+		if options.resizeWidth == 0 or options.resizeHeight == 0 {
+			p.reject_error(Error::InvalidState);
+		}
+		//to do: step 4 - check usability of the image argument
+		//step 5
+		imagebitmap = self.new(global, self.width, self.height);
+		//step 6 - implementing for HTMLCanvasElement and OffscreenCanvas
+		match image {
+			ImageBitmapSource::HTMLCanvasElement => createImageBitmap_canvas();
+			ImageBitmapSource::OffscreenCanvas => createImageBitmap_canvas();
+		}
+	}
+
 }
